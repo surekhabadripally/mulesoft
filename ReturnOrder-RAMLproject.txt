@@ -1,0 +1,57 @@
+#%RAML 1.0
+title: RETURN GOODS
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/sources/vcs/projects/ca6333e2-a745-411f-ae9f-ec8635b948c0/master/m/itemreturn?return+item+ID=FL0265765766656
+description: return request for item placed
+
+  
+/itemsordered:
+  get:
+    description: fetch completed items that we need to create a return for.
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+               [
+              "item orderedID": "FL0265765766656",
+              "ItemType": "SMARTPHONE",
+
+              "Amount": {
+              "Amount": "150000.00",
+              "Currency": "INR"
+        },
+        
+            ]
+            
+              
+            
+                  
+              
+                  
+              
+
+            
+            
+
+/itemreturn:
+  post:
+    description: create a return
+    queryParameters:
+      return item ID:
+        type: string
+        required: true
+        example:
+          "FL0265765766656"
+    responses:
+      200:
+         description: create  return
+         body:
+          application/json:
+            example:
+              "message": "return placed successfully"
+      400:
+        description: failure
+        body:
+          application/json:
+            example:
+              "Message": "failed"
